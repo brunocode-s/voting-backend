@@ -1,0 +1,377 @@
+# ========== Python ==========
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.env.local
+.env.*.local
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# ========== Flask Specific ==========
+
+# Flask session files
+flask_session/
+
+# Flask migration files (keep migrations folder but ignore __pycache__)
+migrations/__pycache__/
+migrations/versions/__pycache__/
+
+# SQLAlchemy
+*.db
+
+# ========== ML Models ==========
+
+# Trained models (often large files)
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.model
+*.pt
+*.pth
+
+# Keep specific models if needed (uncomment these)
+# !models/random_forest.pkl
+# !models/isolation_forest.pkl
+
+# Model checkpoints
+checkpoints/
+*.ckpt
+
+# ========== Environment & Config ==========
+
+# Environment variables (VERY IMPORTANT - NEVER COMMIT)
+.env
+.env.production
+.env.development
+.env.test
+.env.local
+*.env
+
+# Config files with secrets
+config/production.py
+config/secrets.py
+secrets.yaml
+credentials.json
+
+# ========== Database ==========
+
+# SQLite databases
+*.sqlite
+*.sqlite3
+*.db
+
+# PostgreSQL dumps
+*.sql
+*.dump
+
+# Database backups
+backups/
+*.backup
+
+# ========== Blockchain ==========
+
+# Private keys (CRITICAL - NEVER COMMIT!)
+private_key.txt
+wallet.json
+keystore/
+*.key
+*.pem
+
+# Smart contract build artifacts
+contracts/build/
+*.sol.cache
+
+# ========== Logs ==========
+
+# Application logs
+logs/
+*.log
+*.log.*
+app.log
+error.log
+access.log
+debug.log
+
+# ========== IDE & Editors ==========
+
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ========== OS Files ==========
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ========== Temporary Files ==========
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Upload folders
+uploads/
+user_uploads/
+
+# Cache
+.cache/
+*.cache
+
+# ========== Testing ==========
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+test-results/
+
+# Test databases
+test.db
+test.sqlite
+
+# ========== Deployment ==========
+
+# Gunicorn
+gunicorn.pid
+gunicorn.sock
+
+# Nginx
+nginx.conf.local
+
+# SSL certificates
+*.crt
+*.key
+*.pem
+ssl/
+certs/
+
+# Docker (if you use it later)
+docker-compose.override.yml
+
+# ========== Security ==========
+
+# NEVER commit these!
+secret_key.txt
+api_keys.txt
+*_secret*
+*_private*
+*.secret
+
+# Email credentials
+smtp_credentials.txt
+
+# Biometric credentials (though these shouldn't be files)
+biometric_keys/
+
+# ========== Project Specific ==========
+
+# Fraud detection data
+fraud_data/
+flagged_data/
+
+# Email templates cache
+email_cache/
+
+# Session files
+sessions/
+
+# Lock files
+*.lock
+
+# ========== Keep These (Examples) ==========
+
+# Keep empty directories with .gitkeep
+!.gitkeep
+
+# Keep example env file (without actual secrets)
+!.env.example
+
+# Keep README files
+!README.md
+!*/README.md
