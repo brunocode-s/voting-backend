@@ -1,52 +1,51 @@
-# Flask Core
+# ── Flask core ────────────────────────────────────────────────────────────────
 Flask==2.3.3
 Flask-SQLAlchemy==3.0.5
 Flask-Bcrypt==1.0.1
 Flask-CORS==4.0.0
 Flask-Session==0.5.0
+Flask-Migrate==4.0.5          # Alembic wrapper for Flask — adds `flask db` commands
+Flask-Mail==0.9.1
 Werkzeug==2.3.7
 click==8.1.7
 
-# Database
+# ── Database ──────────────────────────────────────────────────────────────────
 psycopg2-binary==2.9.7
 SQLAlchemy==2.0.20
+alembic==1.13.1               # DB migrations (Flask-Migrate pulls this, pinned for stability)
 
-# Machine Learning (Python 3.12 SAFE)
+# ── Machine learning ──────────────────────────────────────────────────────────
 numpy==1.26.4
 scikit-learn==1.8.0
 pandas>=2.1.0
 joblib==1.5.3
 scipy>=1.11
 
-# Security
+# ── Security & crypto ─────────────────────────────────────────────────────────
 python-dotenv==1.0.0
-cryptography==41.0.3
+cryptography==42.0.8
+PyJWT==2.8.0                  # Used for any token signing outside of Flask-Session
 
-# Server
+# ── NIN verification (Korapay API) ────────────────────────────────────────────
+requests==2.31.0              # HTTP client for Korapay REST calls
+urllib3==2.0.7                # Pinned to avoid SSL issues on some hosts
+
+# ── Biometric / WebAuthn ──────────────────────────────────────────────────────
+webauthn==1.11.1              # py_webauthn — FIDO2/WebAuthn server-side support
+cbor2==5.6.3                  # CBOR encoding required by WebAuthn attestation parsing
+
+# ── Server ────────────────────────────────────────────────────────────────────
 gunicorn==21.2.0
 python-dateutil==2.8.2
 
-# Testing
-pytest==7.4.2
-pytest-flask==1.2.0
-
-# mailing
-Flask-Mail==0.9.1
-
-# ========== BLOCKCHAIN LIBRARIES ==========
-
-# Web3.py - Ethereum/Polygon interaction
+# ── Blockchain ────────────────────────────────────────────────────────────────
 web3==6.11.3
-
-# Eth Account - For wallet management
 eth-account==0.10.0
-
-# Additional crypto utilities
 eth-utils==2.3.1
 eth-keys==0.4.0
-
-# For ABI encoding/decoding
 eth-abi==4.2.1
-
-# Hexbytes for handling hex data
 hexbytes==0.3.1
+
+# ── Testing ───────────────────────────────────────────────────────────────────
+pytest==7.4.2
+pytest-flask==1.2.0

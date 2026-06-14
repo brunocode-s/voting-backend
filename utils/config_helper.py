@@ -1,26 +1,57 @@
+"""
+utils/config_helper.py  (updated)
+– Removed FUOYE-specific email domain enforcement.
+– is_valid_email() now accepts any well-formed address.
+– Legacy is_valid_fuoye_email kept as a no-op alias so existing imports
+  don't crash during migration (remove after cleanup).
+"""
+
+import re
 import json
 from extensions import db
 from models.audit import SystemConfiguration
 
-# Email domain configuration
-ALLOWED_EMAIL_DOMAINS = ['fuoye.edu.ng']
-DOMAIN_ENFORCEMENT_ENABLED = True
 
-def is_valid_fuoye_email(email):
-    """Check if email belongs to allowed domain"""
+# ─────────────────────────────────────────────────────────────────────────────
+# Email validation (domain-agnostic)
+# ─────────────────────────────────────────────────────────────────────────────
+
+EMAIL_REGEX = re.compile(
+    r'^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$'
+)
+
+
+def is_valid_email(email: str) -> bool:
+    """Return True for any syntactically valid e-mail address."""
     if not email or '@' not in email:
         return False
-    
-    domain = email.split('@')[1].lower()
-    return domain in ALLOWED_EMAIL_DOMAINS
+    return bool(EMAIL_REGEX.match(email.strip().lower()))
 
-def get_email_domain_error():
-    """Get formatted error message for invalid domain"""
-    domains = ', '.join(ALLOWED_EMAIL_DOMAINS)
-    return f'Email must be from {domains} domain. Please use your FUOYE email address.'
 
-def get_system_config(key, default=None):
-    """Get dynamic system configuration"""
+# ── Legacy alias — kept so old imports don't break immediately ────────────────
+def is_valid_fuoye_email(email: str) -> bool:
+    """
+    DEPRECATED — domain restriction removed.
+    Now simply delegates to is_valid_email().
+    Remove all call-sites then delete this function.
+    """
+    return is_valid_email(email)
+
+
+def get_email_domain_error() -> str:
+    """
+    DEPRECATED — domain restriction removed.
+    Returns an empty string so any leftover call doesn't crash.
+    """
+    return ''
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Dynamic system configuration helpers
+# ─────────────────────────────────────────────────────────────────────────────
+
+def get_system_config(key: str, default=None):
+    """Read a value from the SystemConfiguration table."""
     try:
         config = SystemConfiguration.query.filter_by(config_key=key).first()
         if config:
@@ -31,25 +62,21 @@ def get_system_config(key, default=None):
             elif config.config_type == 'json':
                 return json.loads(config.config_value)
             return config.config_value
-    except:
+    except Exception:
         pass
     return default
 
 
-def set_system_config(key, value, config_type='string', description=''):
-    """Set dynamic system configuration"""
+def set_system_config(key: str, value, config_type: str = 'string', description: str = ''):
+    """Write (upsert) a value in the SystemConfiguration table."""
     config = SystemConfiguration.query.filter_by(config_key=key).first()
     if not config:
         config = SystemConfiguration(config_key=key)
-    
-    if config_type == 'json':
-        config.config_value = json.dumps(value)
-    else:
-        config.config_value = str(value)
-    
-    config.config_type = config_type
-    config.description = description
-    
+
+    config.config_value = json.dumps(value) if config_type == 'json' else str(value)
+    config.config_type  = config_type
+    config.description  = description
+
     db.session.add(config)
     db.session.commit()
     return config
